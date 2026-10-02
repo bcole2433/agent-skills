@@ -12,8 +12,9 @@ Skills and routines I use with Claude Code, written to be codebase-agnostic. Cop
 | [claude-daily-sync](skills/claude-daily-sync/SKILL.md) | [claude-daily-sync](routines/claude-daily-sync.md) | Snapshots Claude Code memory files and session transcripts into a git repo so cloud agents can read data that only exists on your machine |
 | [nightly-sync](skills/nightly-sync/SKILL.md) | [nightly-sync](routines/nightly-sync.md) | Pulls changed pages, databases and chat from your work tools into a repo as immutable snapshots, folds the signal into a wiki, and writes a review report |
 | [tend-vault](skills/tend-vault/SKILL.md) | [tend-vault](routines/tend-vault.md) | Weekly health check for a markdown knowledge repo: contradictions, orphans, staleness, tag coverage, patterns, and a prioritized report |
+| [weekly-retro](skills/weekly-retro/SKILL.md) | [weekly-retro](routines/weekly-retro.md) | Weekly executive brief from the week's run reports: decisions, shipped work, risks, next-week outlook, with a mandatory back-link pass |
 
-The three pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after, and `tend-vault` audits the result weekly. All three feed one knowledge repo.
+They pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after, `tend-vault` audits the result weekly, and `weekly-retro` synthesizes the week. All four feed one knowledge repo.
 
 ## Configuring a skill
 
