@@ -32,7 +32,7 @@ Static method lives here in SKILL.md. Anything that changes run to run (timestam
 
 1. Read `SYNC-STATE.md` for the last sync time of each source. Cross-check it against `ls -t raw/claude/sessions | head -3` and `ls -t raw/claude/memory | head -3` and use whichever is newer. State tables drift, the files on disk do not.
 2. **Memory change detection.** Enumerate memory files with `find ~/.claude/projects -maxdepth 3 -name "*.md" -path "*/memory/*"` (depth 3 is correct, depth 2 returns nothing). Use mtime as the primary change signal.
-   - macOS (BSD find) has no `-printf`. Use `-newermt "<date>"` for the filter and `-exec stat -f "%Sm %N" -t "%Y-%m-%d %H:%M:%S" {} \;` to print times.
+   - macOS (BSD find) has no `-printf`. Use `-newermt "<date>"` for the filter and `-exec stat -f "%Sm %N" -t "%Y-%m-%d %H:%M:%S" {} +` to print times.
    - On a same-day second run anchor on the prior snapshot file instead of a date: `find ... -newer raw/claude/memory/<prior>.md`. A date means midnight and re-flags everything the earlier run captured.
    - Compare the total file count to the prior snapshot to catch deletions and brand-new projects.
    - Project directory names start with a hyphen. Always use absolute paths or `--` when passing them to `cat`.
