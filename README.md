@@ -11,6 +11,10 @@ Skills and routines I use with Claude Code, written to be codebase-agnostic. Cop
 |---|---|---|
 | [claude-daily-sync](skills/claude-daily-sync/SKILL.md) | [claude-daily-sync](routines/claude-daily-sync.md) | Snapshots Claude Code memory files and session transcripts into a git repo so cloud agents can read data that only exists on your machine |
 
+| [nightly-sync](skills/nightly-sync/SKILL.md) | [nightly-sync](routines/nightly-sync.md) | Pulls changed pages, databases and chat from your work tools into a repo as immutable snapshots, folds the signal into a wiki, and writes a review report |
+
+The two pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after and both feed one knowledge repo.
+
 ## Using a skill
 
 Copy the skill folder into `.claude/skills/` in a project, or `~/.claude/skills/` for every project. Claude Code discovers it by the `name` and `description` in the frontmatter.
