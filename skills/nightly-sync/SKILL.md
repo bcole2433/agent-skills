@@ -3,7 +3,7 @@ name: nightly-sync
 description: Nightly pull of changes from external work tools (docs, databases, chat) into a git-tracked knowledge repo as immutable raw files, then targeted ingest into a wiki and a review report
 ---
 
-Work knowledge lives in tools like a docs workspace and a chat app. This skill pulls only what changed since the last run into a git repo, files it as immutable raw snapshots, folds the signal into a wiki, and leaves a short report for a human to review. It is source-agnostic. Which sources to read is listed in the repo, not here.
+Work knowledge lives in tools like a docs workspace and a chat app. This skill pulls only what changed since the last run into a git repo, files it as immutable raw snapshots, folds the signal into a wiki, and leaves a short report for a human to review. It is source-agnostic. Which sources to read is listed in `CONFIG.md`, not here.
 
 Notion and Slack appear below as worked examples because they are common. Swap in any docs, tracker, or chat tool that can be read by CLI or MCP.
 
@@ -12,7 +12,6 @@ Local Claude memory and sessions are a different pipeline (`claude-daily-sync`).
 ## Target repo layout
 
 ```
-SOURCES.md                      the source list (see below), edited by a human
 SYNC-STATE.md                   last-sync timestamp per source, one table per tool
 index.md                        catalog of wiki pages
 log.md                          one line per run, newest first
@@ -26,21 +25,13 @@ sync-notes.md                   gotchas earlier runs hit (see Run notes)
 
 Static method lives in this file. Run-specific history (timestamps, gotchas, counts) lives in repo files.
 
-### SOURCES.md
+### CONFIG.md
 
-One row per source so the skill never hardcodes ids or names:
-
-| Name | Tool | Kind | Id or path | Raw destination | Tags |
-|---|---|---|---|---|---|
-| Meeting Notes | notion | database | `<id>` | `raw/notion/meetings/` | `meeting-notes, product` |
-| Roadmap | notion | page | `<id>` | `raw/notion/strategy/` | `roadmap, product` |
-| Engineering | slack | channel | `engineering` | `raw/slack/` | `engineering` |
-
-`Kind` matters because change detection differs (see Phase 1).
+Every constant lives in `CONFIG.md` beside this file: repo path, docs sources with ids, chat channels and DMs, wiki folders, style rules. Read it first. If a required value is still a `<placeholder>`, log it and skip that source instead of guessing. `Kind` in the docs table matters because change detection differs (see Phase 1).
 
 ## Phase 1: Scan (minimize reads)
 
-1. Read `SOURCES.md`, `SYNC-STATE.md`, `index.md`, and `sync-notes.md`.
+1. Read `CONFIG.md`, `SYNC-STATE.md`, `index.md`, and `sync-notes.md`.
 2. **Check each source's readiness with a real call, not an environment variable.** Many CLIs authenticate from their own credential store, so a missing `*_TOKEN` variable proves nothing. Use the tool's own health check if it has one (for example `ntn doctor`) or just make the first read and inspect the exit code and payload. Only a missing binary, a non-zero exit, an auth-error payload, or a 401/403 means unavailable. Then log it, skip that tool's sources, and continue with the rest. Never fail the whole run for one tool.
 3. **Detect change cheaply, per source kind.**
    - **Page or document:** compare its `last_edited_time` to the last sync.
@@ -56,7 +47,7 @@ One row per source so the skill never hardcodes ids or names:
 
 Skip unchanged sources entirely. Do not fetch, export, or read them.
 
-For each changed source, export a snapshot to the destination in `SOURCES.md`. A `404 object_not_found` from a docs tool usually means the integration was never shared into that page or database, which is a permissions fix and not an auth failure.
+For each changed source, export a snapshot to the destination in `CONFIG.md`. A `404 object_not_found` from a docs tool usually means the integration was never shared into that page or database, which is a permissions fix and not an auth failure.
 
 **Raw file frontmatter** (tags are set at creation because the file is immutable afterward):
 

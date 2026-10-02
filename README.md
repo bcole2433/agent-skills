@@ -10,10 +10,14 @@ Skills and routines I use with Claude Code, written to be codebase-agnostic. Cop
 | Skill | Routine | What it does |
 |---|---|---|
 | [claude-daily-sync](skills/claude-daily-sync/SKILL.md) | [claude-daily-sync](routines/claude-daily-sync.md) | Snapshots Claude Code memory files and session transcripts into a git repo so cloud agents can read data that only exists on your machine |
-
 | [nightly-sync](skills/nightly-sync/SKILL.md) | [nightly-sync](routines/nightly-sync.md) | Pulls changed pages, databases and chat from your work tools into a repo as immutable snapshots, folds the signal into a wiki, and writes a review report |
+| [tend-vault](skills/tend-vault/SKILL.md) | [tend-vault](routines/tend-vault.md) | Weekly health check for a markdown knowledge repo: contradictions, orphans, staleness, tag coverage, patterns, and a prioritized report |
 
-The two pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after and both feed one knowledge repo.
+The three pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after, and `tend-vault` audits the result weekly. All three feed one knowledge repo.
+
+## Configuring a skill
+
+Each skill folder has a `CONFIG.md` with the constants you fill in: repo path, Notion page and database ids, Slack channels, thresholds, style rules. Skills read it at the start of every run and never hardcode these values. Anything left as a `<placeholder>` makes the skill log it and skip that part instead of guessing.
 
 ## Using a skill
 

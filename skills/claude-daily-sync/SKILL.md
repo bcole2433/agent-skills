@@ -7,6 +7,10 @@ Claude Code keeps memory files and session transcripts under `~/.claude/projects
 
 It is a capture pipeline first. Anything beyond capture (ingesting into a wiki, extracting lessons) is optional and driven by what the target repo already has.
 
+## Config
+
+Read `CONFIG.md` beside this file first. It holds the repo path, remote and branch, the session filters, and the optional-output switches. Use its values wherever this file says "the knowledge repo", `--exclude-session`, or `--include-project`. If a required value is still a `<placeholder>`, log it and stop.
+
 ## Target repo layout
 
 The skill writes into a repo you own (the "knowledge repo"). Only the first three entries are required. Everything else is optional and used only if present.

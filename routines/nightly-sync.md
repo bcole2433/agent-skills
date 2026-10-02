@@ -13,7 +13,7 @@ The scheduled prompt that invokes the `nightly-sync` skill. The skill holds the 
 
 - **The real instructions live in the repo, not in the prompt.** The routine tells the agent to read `SKILL.md` from the checked-out repo, so improving the skill is a normal commit and the scheduled prompt never needs editing.
 - **Scope is stated explicitly.** The routine names what it does not cover so an agent that notices adjacent data does not wander into another pipeline's job.
-- **Sources are data, not prompt text.** Ids and channel names live in `SOURCES.md`.
+- **Sources are data, not prompt text.** Ids and channel names live in the skill's `CONFIG.md`.
 
 ## Install
 
