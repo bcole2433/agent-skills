@@ -95,10 +95,13 @@ Sources the context agent reads, with caps. Leave a row blank to skip it.
 | `RETIRE_AFTER_WEEKS` | `6` | A row with no signal after this long is retired |
 | `CONFOUNDERS` | `<peak-traffic days, seasonal changes, marketing sends, outages, app release lag>` | Named events that can fake or hide a lift. The impact agent checks each against the launch dates |
 
-## Publishing (Notion)
+## Publishing
+
+The Notion rows below apply only to the bundled publisher. Skip them if you use your own.
 
 | Key | Value | Notes |
 |---|---|---|
+| `PUBLISHER` | `scripts/publish_page.py` | Script that publishes the draft. The bundled one targets Notion. To use another service, point this at your own script that follows the publisher contract in `docs/services.md` |
 | `NOTION_DATABASE_ID` | `<database id>` | The database that holds one page per week |
 | `NOTION_DATA_SOURCE_ID` | `<data source id>` | Pages are created under this, not the database id. Resolve it with `ntn api v1/databases/<id>` |
 | `NOTION_TITLE_PROPERTY` | `Name` | |

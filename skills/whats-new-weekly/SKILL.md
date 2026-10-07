@@ -76,7 +76,7 @@ Skip if `SCREENSHOTS_ENABLED` is `no`. Decide which items earn a screenshot (at 
 ## Phase 4: Publish (orchestrator)
 
 ```bash
-python3 skills/whats-new-weekly/scripts/publish_page.py \
+python3 <PUBLISHER> \
   --draft STATE_DIR/runs/<date>/draft.md \
   --images-dir STATE_DIR/runs/<date>/screenshots \
   --data-source <NOTION_DATA_SOURCE_ID> \
@@ -84,6 +84,8 @@ python3 skills/whats-new-weekly/scripts/publish_page.py \
 ```
 
 Verify with `ntn pages get <id> < /dev/null | head -c 3000` that the title, first heading and an image block landed. Publish directly, no draft status.
+
+`<PUBLISHER>` is the script named in `CONFIG.md`. Any publisher must accept `--draft` and `--images-dir` and print `PAGE_URL=<url>` and `PAGE_ID=<id>` as its last two stdout lines. The bundled one also takes `--data-source` and `--cover` (Notion). Verify the page with your service's own read command. The `ntn` command shown is the Notion one.
 
 ### Announce (optional)
 
