@@ -116,13 +116,27 @@ def find_image_placeholders(body):
     return "\n".join(out_lines), tokens
 
 
+ALLOWED_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".webp"}
+
+
+def resolve_image(images_dir, filename):
+    """Resolve filename inside images_dir. Reject traversal, absolute paths, and non-image files."""
+    base = images_dir.resolve()
+    path = (base / filename).resolve()
+    if base != path and base not in path.parents:
+        die(f"image path escapes --images-dir: {filename}")
+    if path.suffix.lower() not in ALLOWED_IMAGE_SUFFIXES:
+        die(f"image is not an allowed image type: {filename}")
+    return path
+
+
 def validate_images(images, images_dir):
     if not images:
         return
     if images_dir is None:
         die("draft references images but --images-dir was not given")
     for _token, filename, _caption in images:
-        path = images_dir / filename
+        path = resolve_image(images_dir, filename)
         if not path.is_file():
             die(f"image not found: {path}")
 
@@ -237,7 +251,7 @@ def insert_images(page_id, images, upload_ids):
 
 
 def set_cover(page_id, images_dir, cover_filename):
-    path = images_dir / cover_filename
+    path = resolve_image(images_dir, cover_filename)
     if not path.is_file():
         die(f"--cover image not found: {path}")
     upload_id = upload_file(path)
@@ -282,7 +296,7 @@ def main():
     set_tags(page_id, tags)
 
     if images:
-        upload_ids = {token: upload_file(args.images_dir / filename) for token, filename, _caption in images}
+        upload_ids = {token: upload_file(resolve_image(args.images_dir, filename)) for token, filename, _caption in images}
         insert_images(page_id, images, upload_ids)
 
     if args.cover:
