@@ -13,8 +13,13 @@ Skills and routines I use with Claude Code, written to be codebase-agnostic. Cop
 | [nightly-sync](skills/nightly-sync/SKILL.md) | [nightly-sync](routines/nightly-sync.md) | Pulls changed pages, databases and chat from your work tools into a repo as immutable snapshots, folds the signal into a wiki, and writes a review report |
 | [tend-vault](skills/tend-vault/SKILL.md) | [tend-vault](routines/tend-vault.md) | Weekly health check for a markdown knowledge repo: contradictions, orphans, staleness, tag coverage, patterns, and a prioritized report |
 | [weekly-retro](skills/weekly-retro/SKILL.md) | [weekly-retro](routines/weekly-retro.md) | Weekly executive brief from the week's run reports: decisions, shipped work, risks, next-week outlook, with a mandatory back-link pass |
+| [meeting-prep](skills/meeting-prep/SKILL.md) | on demand | One-screen pre-meeting briefing built from what the wiki already knows |
+| [decision](skills/decision/SKILL.md) | on demand | Logs a decision with rationale and alternatives, then cross-links it from affected pages |
+| [query](skills/query/SKILL.md) | on demand | Answers a question from the wiki with citations, a confidence rating, and named gaps |
+| [ingest](skills/ingest/SKILL.md) | on demand | Manually ingests a file, URL or all sources into the wiki |
+| [whats-new-weekly](skills/whats-new-weekly/SKILL.md) | [whats-new-weekly](routines/whats-new-weekly.md) | Weekly release-announcement page for non-technical readers, from what reached production plus analytics impact, published to Notion |
 
-They pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after, `tend-vault` audits the result weekly, and `weekly-retro` synthesizes the week. All four feed one knowledge repo.
+They pair well: `claude-daily-sync` runs first on your machine, `nightly-sync` runs after, `tend-vault` audits the result weekly, and `weekly-retro` synthesizes the week. All four feed one knowledge repo, and the on-demand skills (`meeting-prep`, `decision`, `query`, `ingest`) read from it.
 
 ## Configuring a skill
 
