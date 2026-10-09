@@ -19,18 +19,31 @@ A public library of Claude Code skills and scheduled routines. It is markdown pl
 - Routines stay thin, raw files are immutable, and skills commit only their own paths (never `git add -A`).
 - New skills need a `SKILL.md`, a `CONFIG.md`, an entry in the README tables, and usually a routine.
 
-## Helper scripts
+## Core Principles
+- Do not preserve backward compatibility. Remove obsolete paths instead of
+  adding compatibility layers, fallbacks, or migrations.
+- Choose the simplest implementation that fully meets the current
+  requirements. Avoid speculative abstractions, configuration, and
+  indirection.
+- Grow the system in layers. Start from the smallest version that works end
+  to end, and add each new capability on top of a product that already
+  works. Never trade a working product for unfinished complexity.
+- Keep components modular and concerns clearly separated.
+- Lean on the dependencies already in the project before writing your own
+  implementation or adding packages. Do not assume a library lacks a
+  capability without checking its documentation and types.
+- Make architectural decisions for the long term. Do not accept a stopgap
+  that only works for now and is meant to be replaced later.
 
-Python 3 stdlib only. Each prints usage with `--help`.
 
-```bash
-python3 skills/tend-vault/lint_tags.py --dirs wiki lessons --root <knowledge-repo>
-python3 skills/claude-daily-sync/extract_sessions.py --since YYYY-MM-DD
-python3 skills/whats-new-weekly/scripts/collect_shipped.py --config skills/whats-new-weekly/CONFIG.md --since YYYY-MM-DD
-python3 skills/whats-new-weekly/scripts/publish_page.py --draft draft.md --data-source <id> --dry-run
-```
+## Agent Behavior
 
-`collect_shipped.py` reads the first fenced `json` block of the `CONFIG.md` it is given. `publish_page.py` must keep rejecting image paths outside `--images-dir`.
+Write plainly, with no mannered prose, in responses, docs, PR descriptions, and commit messages.
+Never add `Co-Authored-By:`, `Generated with [Claude Code]` line (or any "Generated with" footer), `Claude-Session:` lines, or Claude session links (`https://claude.ai/code/session_...`) to commit messages or PR descriptions.
+
+**Self-improve:** after corrections, update `lessons.md`. Review at session start.
+**Verify before done:** run tests, check logs, test in browser
+**Lint budget gate:** `yarn lint:budget` enforces warning count. Re-baseline with `node scripts/lint-budget.mjs --update`.
 
 ## Git workflow
 
