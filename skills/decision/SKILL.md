@@ -9,6 +9,10 @@ On-demand command. A decision that lives only in a meeting or a chat thread gets
 
 Read `CONFIG.md` beside this file first. It holds the paths, the allowed statuses and domains, and the ledger location. If a required value is still a `<placeholder>`, say which one and stop.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. If a file is missing, say so and continue with the skill's own rules.
+
 ## Process
 
 1. Read the index to find pages related to the decision.

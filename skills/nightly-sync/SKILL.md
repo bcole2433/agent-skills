@@ -9,6 +9,10 @@ Notion and Slack appear below as worked examples because they are common. Swap i
 
 Local Claude memory and sessions are a different pipeline (`claude-daily-sync`). Do not add them here, two pipelines writing the same files will race.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`, `SYNC_STATE_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. Read `SYNC_STATE_PATH` for per-source sync state and update it when this skill changes that state. If a file is missing, say so and continue with the skill's own rules.
+
 ## Target repo layout
 
 ```

@@ -168,3 +168,13 @@ Map internal names to the words your audience uses.
 | `GIT_REMOTE` | `origin` | |
 | `GIT_BRANCH` | `main` | |
 | `RUN_DAY_AND_TIME` | `Mon 18:00` | Local machine, awake |
+
+## Governance files
+
+Paths relative to the knowledge repo root. See [docs/governance.md](../../docs/governance.md).
+
+| Key | Value | Notes |
+|---|---|---|
+| `CONSTITUTION_PATH` | `CONSTITUTION.md` | How the agent operates in this repo, plus current priorities |
+| `WIKI_SCHEMA_PATH` | `WIKI-SCHEMA.md` | Conventions, page types, operations |
+| `CONNECTIVITY_PATH` | `CONNECTIVITY.md` | Tag and WikiLink contract. Applies to every file the skill creates or edits |

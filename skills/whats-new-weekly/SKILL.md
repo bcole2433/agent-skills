@@ -11,6 +11,10 @@ This skill produces a weekly page for people who do not write code. It reads lik
 
 Read `CONFIG.md` beside this file first. It holds the repo list, the Notion ids, the voice rules, the analytics settings, the model roles, and the caps. If a required value is still a `<placeholder>`, log it and skip the part that needs it. A missing Notion id stops the run before publishing.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. If a file is missing, say so and continue with the skill's own rules.
+
 ## Model and concurrency rule
 
 Run the orchestrator on `ORCHESTRATOR_MODEL`. Dispatch research, collection, screenshot and drafting-support work to subagents on `WORKER_MODEL`, never more than `MAX_PARALLEL_AGENTS` at once. The orchestrator keeps feature selection, the final copy, the causation judgment in the impact section, the screenshot decision, and publishing.

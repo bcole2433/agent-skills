@@ -53,3 +53,13 @@ Fill in the values below before the first run. The skill reads this file at the 
 | `SCHEDULED_REQUIRES_REVIEW` | `no` | `yes` makes even scheduled runs stop at a draft |
 | `STYLE_RULES` | | Optional punctuation or tone rules. Example: `no em dashes, no semicolons` |
 | `RUN_DAY_AND_TIME` | `Fri 16:00` | Weekly, after the week's syncs have landed |
+
+## Governance files
+
+Paths relative to the knowledge repo root. See [docs/governance.md](../../docs/governance.md).
+
+| Key | Value | Notes |
+|---|---|---|
+| `CONSTITUTION_PATH` | `CONSTITUTION.md` | How the agent operates in this repo, plus current priorities |
+| `WIKI_SCHEMA_PATH` | `WIKI-SCHEMA.md` | Conventions, page types, operations |
+| `CONNECTIVITY_PATH` | `CONNECTIVITY.md` | Tag and WikiLink contract. Applies to every file the skill creates or edits |

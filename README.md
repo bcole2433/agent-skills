@@ -41,6 +41,8 @@ decision, ingest ──▶ write into the repo
 
 The skills share one convention: **the skill file is method only.** Anything that changes run to run (timestamps, counts, gotchas) lives in files in your knowledge repo, never in the skill.
 
+All skills also load the repo's governance files (constitution, schema, connectivity contract) before writing. See [docs/governance.md](docs/governance.md).
+
 ## What you need
 
 | Need | Why | Required for |

@@ -9,6 +9,10 @@ On-demand command, the manual counterpart to `nightly-sync`. Use it when you do 
 
 Read `CONFIG.md` beside this file first. It holds the repo layout, the raw category map, and where the docs sources are defined. If a required value is still a `<placeholder>`, say which one and stop.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`, `SYNC_STATE_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. Read `SYNC_STATE_PATH` for per-source sync state and update it when this skill changes that state. If a file is missing, say so and continue with the skill's own rules.
+
 ## Process
 
 1. Read the operating principles and schema documents named in `CONFIG.md`, then the index for current wiki state.

@@ -14,6 +14,10 @@ It works two ways:
 
 Read `CONFIG.md` beside this file first. It holds the paths, the week definition, the reader profile, the table shapes, and the style rules. If a required value is still a `<placeholder>`, log it and stop.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. If a file is missing, say so and continue with the skill's own rules.
+
 ## Phase 1: Read (minimal)
 
 1. The link contract file if `LINK_CONTRACT_PATH` is set. It is one page and the page you write must satisfy it.

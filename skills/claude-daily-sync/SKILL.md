@@ -11,6 +11,10 @@ It is a capture pipeline first. Anything beyond capture (ingesting into a wiki, 
 
 Read `CONFIG.md` beside this file first. It holds the repo path, remote and branch, the session filters, and the optional-output switches. Use its values wherever this file says "the knowledge repo", `--exclude-session`, or `--include-project`. If a required value is still a `<placeholder>`, log it and stop.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`, `SYNC_STATE_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. Read `SYNC_STATE_PATH` for per-source sync state and update it when this skill changes that state. If a file is missing, say so and continue with the skill's own rules.
+
 ## Target repo layout
 
 The skill writes into a repo you own (the "knowledge repo"). Only the first three entries are required. Everything else is optional and used only if present.

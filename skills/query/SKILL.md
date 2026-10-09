@@ -9,6 +9,10 @@ On-demand command. It answers from what the repo knows, says how well sourced th
 
 Read `CONFIG.md` beside this file first. It holds the repo layout and the synthesis template location. If a required value is still a `<placeholder>`, say which one and stop.
 
+## Governance
+
+Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. If a file is missing, say so and continue with the skill's own rules.
+
 ## Process
 
 1. **Start from the index.** Never guess which pages exist.

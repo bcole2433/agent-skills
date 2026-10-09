@@ -66,3 +66,14 @@ List bot-only or low-signal channels so the scan ignores them: `<alerts>, <deplo
 | Key | Value | Notes |
 |---|---|---|
 | `RUN_TIME_LOCAL` | `19:00` | Run after `claude-daily-sync` so they never write the same files at once |
+
+## Governance files
+
+Paths relative to the knowledge repo root. See [docs/governance.md](../../docs/governance.md).
+
+| Key | Value | Notes |
+|---|---|---|
+| `CONSTITUTION_PATH` | `CONSTITUTION.md` | How the agent operates in this repo, plus current priorities |
+| `WIKI_SCHEMA_PATH` | `WIKI-SCHEMA.md` | Conventions, page types, operations |
+| `CONNECTIVITY_PATH` | `CONNECTIVITY.md` | Tag and WikiLink contract. Applies to every file the skill creates or edits |
+| `SYNC_STATE_PATH` | `SYNC-STATE.md` | Pipeline sync state per source |
