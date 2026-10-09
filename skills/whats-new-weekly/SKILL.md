@@ -15,6 +15,10 @@ Read `CONFIG.md` beside this file first. It holds the repo list, the Notion ids,
 
 Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. If a file is missing, say so and continue with the skill's own rules.
 
+## Lessons
+
+This skill improves itself. Before running, read `LESSONS_DIR/index.md` from `CONFIG.md`, then `LESSONS_DIR/whats-new-weekly.md` and follow it. After any correction from the user or a failure you worked around, append a dated entry to `LESSONS_DIR/whats-new-weekly.md` using the format in the index, and keep the index current. If `LESSONS_DIR` is blank, skip.
+
 ## Model and concurrency rule
 
 Run the orchestrator on `ORCHESTRATOR_MODEL`. Dispatch research, collection, screenshot and drafting-support work to subagents on `WORKER_MODEL`, never more than `MAX_PARALLEL_AGENTS` at once. The orchestrator keeps feature selection, the final copy, the causation judgment in the impact section, the screenshot decision, and publishing.

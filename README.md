@@ -1,6 +1,6 @@
 # agent-skills
 
-Skills and routines for Claude Code that turn a git repo of markdown into a self-maintaining team knowledge base. They are codebase-agnostic and service-agnostic. Use the whole set, or copy one skill.
+Skills and routines for agents that turn a git repo of markdown into a self-maintaining team knowledge base. They are codebase-agnostic and service-agnostic. Use the whole set, or copy one skill.
 
 - **Skills** are reusable instructions an agent loads when a task matches. Each lives in `skills/<name>/SKILL.md` with a `CONFIG.md` and any helper scripts beside it.
 - **Routines** are scheduled prompts that run a skill on a cadence. Each lives in `routines/<name>.md`.
@@ -10,7 +10,7 @@ Skills and routines for Claude Code that turn a git repo of markdown into a self
 
 | Skill | Routine | What it does |
 |---|---|---|
-| [claude-daily-sync](skills/claude-daily-sync/SKILL.md) | [claude-daily-sync](routines/claude-daily-sync.md) | Snapshots Claude Code memory files and session transcripts into a git repo so cloud agents can read data that only exists on your machine |
+| [claude-daily-sync](skills/claude-daily-sync/SKILL.md) | [claude-daily-sync](routines/claude-daily-sync.md) | Snapshots agent memory files and session transcripts into a git repo so cloud agents can read data that only exists on your machine |
 | [nightly-sync](skills/nightly-sync/SKILL.md) | [nightly-sync](routines/nightly-sync.md) | Pulls changed pages, databases and chat from your work tools into a repo as immutable snapshots, folds the signal into a wiki, and writes a review report |
 | [tend-vault](skills/tend-vault/SKILL.md) | [tend-vault](routines/tend-vault.md) | Weekly health check: contradictions, orphans, staleness, tag coverage, patterns, and a prioritized report |
 | [weekly-retro](skills/weekly-retro/SKILL.md) | [weekly-retro](routines/weekly-retro.md) | Weekly executive brief from the week's run reports, with a mandatory back-link pass |
@@ -47,7 +47,7 @@ All skills also load the repo's governance files (constitution, schema, connecti
 
 | Need | Why | Required for |
 |---|---|---|
-| [Claude Code](https://claude.com/claude-code) | Runs the skills | Everything |
+| An agent that supports skills | Runs the skills | Everything |
 | A git repo for your knowledge base, with a remote | Where all output lands | Everything |
 | `git`, `python3` | Helper scripts and commits | Everything |
 | Access to your docs tool and chat (CLI or MCP) | Source material | `nightly-sync`, `ingest` |
@@ -65,7 +65,7 @@ You do not need all of it. Pick the skills you want and skip the rest.
    ```
    raw/            immutable snapshots (raw/claude/, raw/<tool>/)
    wiki/           curated pages
-   lessons/        optional, lessons learned plus an index.md
+   lessons/        durable lessons learned (router pattern): index.md plus one file per skill
    decisions/      optional, decision files and an open-questions ledger
    people/         optional, a _registry.md of names and roles
    pending/        run reports
@@ -81,11 +81,11 @@ You do not need all of it. Pick the skills you want and skip the rest.
    cp -R path/to/agent-skills/skills/nightly-sync .claude/skills/
    ```
 
-   Use `~/.claude/skills/` instead to make a skill available in every project. Claude Code finds each one by the `name` and `description` in its frontmatter.
+   Use `~/.claude/skills/` instead to make a skill available in every project. The agent finds each one by the `name` and `description` in its frontmatter.
 
 3. **Fill in `CONFIG.md`** in each skill folder. This is the one file you edit. See [Configuring a skill](#configuring-a-skill).
 
-4. **Run it once by hand** from the knowledge repo, in Claude Code, before scheduling it. For example: "run the nightly-sync skill". Fix whatever the first run surfaces.
+4. **Run it once by hand** from the knowledge repo, in your agent, before scheduling it. For example: "run the nightly-sync skill". Fix whatever the first run surfaces.
 
 5. **Schedule it.** Copy the prompt from the skill's file in `routines/` into a scheduled task. See [Scheduling](#scheduling).
 
@@ -135,7 +135,7 @@ The full capability map, the publisher contract for `whats-new-weekly`, and a fi
 
 A routine is a short prompt that points at a skill. The skill holds the method, the routine holds where, when and under what conditions.
 
-- **Claude desktop scheduled tasks.** Copy the routine prompt to `~/.claude/scheduled-tasks/<name>/SKILL.md` and set the schedule in the UI. The machine must be awake. This is the only option for routines that read `~/.claude/projects` or local repo clones.
+- **Desktop agent scheduled tasks.** Copy the routine prompt to `~/.claude/scheduled-tasks/<name>/SKILL.md` and set the schedule in the UI. The machine must be awake. This is the only option for routines that read `~/.claude/projects` or local repo clones.
 - **Cloud routines.** Create a routine with the same prompt and attach the repo and connectors. Good for `nightly-sync`, `tend-vault` and `weekly-retro`, which need only the repo and read access to your tools.
 - **cron, launchd or CI.** Run `claude -p "<routine prompt>"` from the knowledge repo on a schedule.
 
@@ -148,7 +148,7 @@ Suggested order so routines never write the same files at once:
 | Early week | `whats-new-weekly` | Local |
 | End of the week, after syncs | `tend-vault`, then `weekly-retro` | Local or cloud |
 
-On-demand skills (`meeting-prep`, `decision`, `query`, `ingest`) need no schedule. Ask for them in Claude Code, or save the slash command file shown in the routine docs.
+On-demand skills (`meeting-prep`, `decision`, `query`, `ingest`) need no schedule. Ask for them in your agent, or save the slash command file shown in the routine docs.
 
 ## Design conventions
 

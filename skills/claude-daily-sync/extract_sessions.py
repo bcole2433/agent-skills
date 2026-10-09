@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-extract_sessions.py - Digest on-disk Claude Code session transcripts.
+extract_sessions.py - Digest on-disk agent session transcripts.
 
-Claude Code stores terminal and IDE sessions as JSONL transcripts at
+The agent stores terminal and IDE sessions as JSONL transcripts at
 ~/.claude/projects/<escaped-cwd>/<session-uuid>.jsonl. This script reads them directly and emits
 a compact Markdown digest (user prompts plus the final assistant note) so an agent can triage
 decisions without loading images or tool output into context.
