@@ -18,7 +18,7 @@ The scheduled prompt that invokes the `whats-new-weekly` skill once a week.
 
 ## Install
 
-Claude desktop scheduled tasks live at `~/.claude/scheduled-tasks/<name>/SKILL.md`. Copy the prompt below there and set the schedule in the scheduled tasks UI.
+Desktop agent scheduled tasks live at `~/.claude/scheduled-tasks/<name>/SKILL.md`. Copy the prompt below there and set the schedule in the scheduled tasks UI.
 
 ## Prompt
 

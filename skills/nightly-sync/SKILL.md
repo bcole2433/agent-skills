@@ -7,11 +7,15 @@ Work knowledge lives in tools like a docs workspace and a chat app. This skill p
 
 Notion and Slack appear below as worked examples because they are common. Swap in any docs, tracker, or chat tool that can be read by CLI or MCP.
 
-Local Claude memory and sessions are a different pipeline (`claude-daily-sync`). Do not add them here, two pipelines writing the same files will race.
+Local agent memory and sessions are a different pipeline (`claude-daily-sync`). Do not add them here, two pipelines writing the same files will race.
 
 ## Governance
 
 Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`, `SYNC_STATE_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. Read `SYNC_STATE_PATH` for per-source sync state and update it when this skill changes that state. If a file is missing, say so and continue with the skill's own rules.
+
+## Lessons
+
+This skill improves itself. Before running, read `LESSONS_DIR/index.md` from `CONFIG.md`, then `LESSONS_DIR/nightly-sync.md` and follow it. After any correction from the user or a failure you worked around, append a dated entry to `LESSONS_DIR/nightly-sync.md` using the format in the index, and keep the index current. If `LESSONS_DIR` is blank, skip.
 
 ## Target repo layout
 

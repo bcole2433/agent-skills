@@ -49,3 +49,9 @@ Paths relative to the knowledge repo root. See [docs/governance.md](../../docs/g
 | `WIKI_SCHEMA_PATH` | `WIKI-SCHEMA.md` | Conventions, page types, operations |
 | `CONNECTIVITY_PATH` | `CONNECTIVITY.md` | Tag and WikiLink contract. Applies to every file the skill creates or edits |
 | `SYNC_STATE_PATH` | `SYNC-STATE.md` | Pipeline sync state per source |
+
+## Lessons
+
+| Key | Value | Notes |
+|---|---|---|
+| `LESSONS_DIR` | `lessons` | Relative to the knowledge repo root. Holds `index.md` and one file per skill |

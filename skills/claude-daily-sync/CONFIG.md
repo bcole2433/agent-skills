@@ -9,7 +9,7 @@ Fill in the values below before the first run. The skill reads this file at the 
 | `KNOWLEDGE_REPO_PATH` | `<absolute path to your knowledge repo>` | Local checkout the skill writes into |
 | `GIT_REMOTE` | `origin` | Remote to push to |
 | `GIT_BRANCH` | `main` | Branch to pull and push |
-| `CLAUDE_PROJECTS_DIR` | `~/.claude/projects` | Where Claude Code stores transcripts and memory |
+| `CLAUDE_PROJECTS_DIR` | `~/.claude/projects` | Where the agent stores transcripts and memory |
 
 ## Session filters
 
@@ -49,3 +49,9 @@ Paths relative to the knowledge repo root. See [docs/governance.md](../../docs/g
 | `WIKI_SCHEMA_PATH` | `WIKI-SCHEMA.md` | Conventions, page types, operations |
 | `CONNECTIVITY_PATH` | `CONNECTIVITY.md` | Tag and WikiLink contract. Applies to every file the skill creates or edits |
 | `SYNC_STATE_PATH` | `SYNC-STATE.md` | Pipeline sync state per source |
+
+## Lessons
+
+| Key | Value | Notes |
+|---|---|---|
+| `LESSONS_DIR` | `lessons` | Relative to the knowledge repo root. Holds `index.md` and one file per skill |

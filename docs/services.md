@@ -6,7 +6,7 @@ The skills are written against capabilities, not products. "Docs tool" means whe
 
 1. Open the skill's `CONFIG.md`.
 2. Change the `Tool` column or key for that source to your service's name.
-3. Give the agent a way to read it: a CLI on your `PATH`, or an MCP server connected to your Claude session.
+3. Give the agent a way to read it: a CLI on your `PATH`, or an MCP server connected to your agent session.
 4. Replace the example commands in the skill's SKILL.md with your service's equivalents, or add a line to `CONFIG.md` telling the agent which commands to use.
 
 The skills never hardcode ids. They read them from `CONFIG.md`, so changing a service rarely means changing the method.
@@ -20,7 +20,7 @@ The skills never hardcode ids. They read them from `CONFIG.md`, so changing a se
 | Analytics | `whats-new-weekly` (impact) | PostHog | Amplitude, Mixpanel, GA4, any SQL warehouse |
 | Code host | `whats-new-weekly` | GitHub (`gh` CLI) | GitLab (`glab`), Bitbucket, plain `git` only |
 | Publish target | `whats-new-weekly` | Notion | Confluence, Google Docs, a static site, a Slack canvas, a markdown file in a repo |
-| Scheduler | all routines | Claude desktop scheduled tasks | cron, launchd, GitHub Actions, any cloud routine |
+| Scheduler | all routines | Desktop agent scheduled tasks | cron, launchd, GitHub Actions, any cloud routine |
 | Browser capture | `whats-new-weekly` (screenshots) | A browser CLI | Playwright, Puppeteer, any tool that saves a PNG |
 | Knowledge repo | all | A git repo of markdown | Any git host |
 
