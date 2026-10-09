@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Agents when working with code in this repository.
 
 ## What this repo is
 
-A public library of Claude Code skills and scheduled routines. It is markdown plus a few stdlib-only Python helpers. There is no build, lint or test tooling. The skills operate on a separate knowledge repo (wiki, raw snapshots, reports), never on this one.
+A public library of Agent skills and scheduled routines. It is markdown plus a few stdlib-only Python helpers. There is no build, lint or test tooling. The skills operate on a separate knowledge repo (wiki, raw snapshots, reports), never on this one.
 
 - `skills/<name>/SKILL.md` is the method. `CONFIG.md` beside it holds every constant the skill needs.
 - `routines/<name>.md` is the thin scheduled prompt that invokes a skill.
