@@ -8,6 +8,7 @@ A public library of Agent skills and scheduled routines. It is markdown plus a f
 
 - `skills/<name>/SKILL.md` is the method. `CONFIG.md` beside it holds every constant the skill needs.
 - `routines/<name>.md` is the thin scheduled prompt that invokes a skill.
+- `lessons/` holds durable lessons, routed by `lessons/index.md` with one file per skill. Every skill reads and appends to it.
 - `docs/` holds the service capability map (`services.md`) and the governance file contract (`governance.md`).
 
 ## Design rules to preserve
@@ -17,6 +18,7 @@ A public library of Agent skills and scheduled routines. It is markdown plus a f
 - **Skills read `CONFIG.md` first.** A required value still a `<placeholder>` means log it and skip, never guess.
 - **Every skill has a `## Governance` section** and a `## Governance files` table in its `CONFIG.md`. They load `CONSTITUTION.md`, `WIKI-SCHEMA.md` and `CONNECTIVITY.md` from the knowledge repo before writing. Sync skills (`nightly-sync`, `claude-daily-sync`, `ingest`, `tend-vault`) also load `SYNC-STATE.md`. Keep new skills consistent with this. `DESIGN.md` is deliberately not wired in.
 - Routines stay thin, raw files are immutable, and skills commit only their own paths (never `git add -A`).
+- `skills/whats-new-weekly/scripts/publish_page.py` must keep rejecting image paths outside `--images-dir` and non-image files.
 - New skills need a `SKILL.md`, a `CONFIG.md`, an entry in the README tables, and usually a routine.
 
 ## Core Principles
@@ -41,9 +43,8 @@ A public library of Agent skills and scheduled routines. It is markdown plus a f
 Write plainly, with no mannered prose, in responses, docs, PR descriptions, and commit messages.
 Never add `Co-Authored-By:`, `Generated with [Claude Code]` line (or any "Generated with" footer), `Claude-Session:` lines, or Claude session links (`https://claude.ai/code/session_...`) to commit messages or PR descriptions.
 
-**Self-improve:** after corrections, update `lessons.md`. Review at session start.
-**Verify before done:** run tests, check logs, test in browser
-**Lint budget gate:** `yarn lint:budget` enforces warning count. Re-baseline with `node scripts/lint-budget.mjs --update`.
+**Self-improve:** after corrections, add an entry to the matching file in `lessons/` and update `lessons/index.md`. Review `lessons/index.md` at session start.
+**Verify before done:** check the result before reporting it done.
 
 ## Git workflow
 

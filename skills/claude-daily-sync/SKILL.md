@@ -1,9 +1,9 @@
 ---
 name: claude-daily-sync
-description: Daily local-only sync of Claude Code memory files and session transcripts into a git-tracked knowledge repo, so cloud routines and teammates can read data that only exists on your machine
+description: Daily local-only sync of agent memory files and session transcripts into a git-tracked knowledge repo, so cloud routines and teammates can read data that only exists on your machine
 ---
 
-Claude Code keeps memory files and session transcripts under `~/.claude/projects/`. That directory exists only on your local machine, so cloud routines cannot see it. This skill snapshots what changed into a git repo and pushes it, which makes that history available anywhere the repo is.
+The agent keeps memory files and session transcripts under `~/.claude/projects/`. That directory exists only on your local machine, so cloud routines cannot see it. This skill snapshots what changed into a git repo and pushes it, which makes that history available anywhere the repo is.
 
 It is a capture pipeline first. Anything beyond capture (ingesting into a wiki, extracting lessons) is optional and driven by what the target repo already has.
 
@@ -14,6 +14,10 @@ Read `CONFIG.md` beside this file first. It holds the repo path, remote and bran
 ## Governance
 
 Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`, `SYNC_STATE_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. Read `SYNC_STATE_PATH` for per-source sync state and update it when this skill changes that state. If a file is missing, say so and continue with the skill's own rules.
+
+## Lessons
+
+This skill improves itself. Before running, read `LESSONS_DIR/index.md` from `CONFIG.md`, then `LESSONS_DIR/claude-daily-sync.md` and follow it. After any correction from the user or a failure you worked around, append a dated entry to `LESSONS_DIR/claude-daily-sync.md` using the format in the index, and keep the index current. If `LESSONS_DIR` is blank, skip.
 
 ## Target repo layout
 

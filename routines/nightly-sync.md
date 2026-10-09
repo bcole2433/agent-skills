@@ -17,7 +17,7 @@ The scheduled prompt that invokes the `nightly-sync` skill. The skill holds the 
 
 ## Install
 
-Claude desktop scheduled tasks live at `~/.claude/scheduled-tasks/<name>/SKILL.md`. Copy the prompt below there and set the schedule in the scheduled tasks UI. For a cloud run, create a routine with the same prompt and attach the repo and the connectors it needs (docs workspace, chat).
+Desktop agent scheduled tasks live at `~/.claude/scheduled-tasks/<name>/SKILL.md`. Copy the prompt below there and set the schedule in the scheduled tasks UI. For a cloud run, create a routine with the same prompt and attach the repo and the connectors it needs (docs workspace, chat).
 
 ## Prompt
 
@@ -35,7 +35,7 @@ The pipeline's real instructions live in the knowledge repo, not in this prompt.
 
 1. Use the working checkout at `<path to repo>` (remote: `<git remote url>`).
 2. Fetch the latest and work from current `origin/main`, then invoke the `nightly-sync` skill from `.claude/skills/nightly-sync/SKILL.md`. Read it in full and execute it as written. Do not summarize it from memory.
-3. This pipeline covers docs and chat only. Claude memory and sessions belong to the separate `claude-daily-sync` task. Do not attempt those steps even if you notice `raw/claude/` files.
+3. This pipeline covers docs and chat only. Agent memory and sessions belong to the separate `claude-daily-sync` task. Do not attempt those steps even if you notice `raw/claude/` files.
 ```
 
 ## Ordering with other routines

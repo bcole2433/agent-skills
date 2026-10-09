@@ -15,7 +15,7 @@ The data lives in `~/.claude/projects`, which no cloud environment can reach. A 
 
 ## Install
 
-Claude desktop scheduled tasks live at `~/.claude/scheduled-tasks/<name>/SKILL.md`. Copy the prompt below into `~/.claude/scheduled-tasks/claude-daily-sync/SKILL.md` and set the schedule in the scheduled tasks UI. Put the skill itself in your knowledge repo at `.claude/skills/claude-daily-sync/` (or in `~/.claude/skills/`).
+Desktop agent scheduled tasks live at `~/.claude/scheduled-tasks/<name>/SKILL.md`. Copy the prompt below into `~/.claude/scheduled-tasks/claude-daily-sync/SKILL.md` and set the schedule in the scheduled tasks UI. Put the skill itself in your knowledge repo at `.claude/skills/claude-daily-sync/` (or in `~/.claude/skills/`).
 
 ## Prompt
 
@@ -24,7 +24,7 @@ Replace the `<...>` placeholders.
 ```markdown
 ---
 name: claude-daily-sync
-description: Daily local-only sync of Claude memory and sessions into the knowledge repo
+description: Daily local-only sync of agent memory and sessions into the knowledge repo
 ---
 
 This is an automated, unattended local-only run. All permissions are pre-accepted. Make reasonable choices without asking clarifying questions and note them in the run report.
@@ -34,7 +34,7 @@ This task must run on my local machine while it is on. It reads `~/.claude/proje
 1. Work in my knowledge repo checkout at `<path to repo>` (remote: `<git remote url>`).
 2. Fetch the latest and work from current `origin/main` (`git pull --rebase origin main`).
 3. Invoke the `claude-daily-sync` skill from `.claude/skills/claude-daily-sync/SKILL.md`. Read it in full and execute it as written. Do not summarize it from memory.
-4. This routine covers Claude memory and sessions only. Other sources are handled by their own routines.
+4. This routine covers agent memory and sessions only. Other sources are handled by their own routines.
 5. If `~/.claude/projects` does not exist, the skill's own guard logs it and stops without writing or committing.
 ```
 

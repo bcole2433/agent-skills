@@ -13,6 +13,10 @@ Read `CONFIG.md` beside this file first. It holds the paths, the allowed statuse
 
 Before writing any file, load the governance files named in `CONFIG.md` (`CONSTITUTION_PATH`, `WIKI_SCHEMA_PATH`, `CONNECTIVITY_PATH`). Follow `CONSTITUTION_PATH` for operating rules and priorities, `WIKI_SCHEMA_PATH` for page types and conventions, and `CONNECTIVITY_PATH` for the tag and WikiLink contract on every file you create or edit. If a file is missing, say so and continue with the skill's own rules.
 
+## Lessons
+
+This skill improves itself. Before running, read `LESSONS_DIR/index.md` from `CONFIG.md`, then `LESSONS_DIR/decision.md` and follow it. After any correction from the user or a failure you worked around, append a dated entry to `LESSONS_DIR/decision.md` using the format in the index, and keep the index current. If `LESSONS_DIR` is blank, skip.
+
 ## Process
 
 1. Read the index to find pages related to the decision.

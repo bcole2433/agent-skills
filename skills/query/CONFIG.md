@@ -35,3 +35,9 @@ Paths relative to the knowledge repo root. See [docs/governance.md](../../docs/g
 | `CONSTITUTION_PATH` | `CONSTITUTION.md` | How the agent operates in this repo, plus current priorities |
 | `WIKI_SCHEMA_PATH` | `WIKI-SCHEMA.md` | Conventions, page types, operations |
 | `CONNECTIVITY_PATH` | `CONNECTIVITY.md` | Tag and WikiLink contract. Applies to every file the skill creates or edits |
+
+## Lessons
+
+| Key | Value | Notes |
+|---|---|---|
+| `LESSONS_DIR` | `lessons` | Relative to the knowledge repo root. Holds `index.md` and one file per skill |
