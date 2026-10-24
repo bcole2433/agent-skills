@@ -1,6 +1,6 @@
 ---
 name: whats-new-weekly
-description: Weekly "What's New" post for a non-technical audience. Collects what reached production in the last 7 days across your repos, adds context from meeting notes and chat, checks analytics for the impact of recent launches, captures optional web screenshots, and publishes a release-announcement page to Notion
+description: Weekly "What's New" post for a non-technical audience. Collects what reached production in the last 7 days across your repos, adds context from meeting notes and chat, checks analytics for the impact of recent launches, captures optional web screenshots (including a gated screenshot of unreleased work for the "Coming up" section), and publishes a release-announcement page to Notion
 ---
 
 ## Purpose and audience
@@ -32,7 +32,7 @@ This runs unattended every week, so it reads excerpts and never raw sources.
 - The orchestrator reads only this file, `references/voice.md`, the "Draft file format" section of `references/notion-publishing.md`, the three Phase 1 output files, and the collector's summary lines. It never opens `shipped.json`, raw files, or full analytics reports. To check a fact, grep the JSON for the PR number.
 - Subagents read the digest files named in their handoff and open a raw source only when a specific bullet needs verifying (context agent at most 3 raw files, shipped-changes agent at most 8 `gh pr view` calls, impact agent at most `MAX_ANALYTICS_QUERIES` queries).
 - Output caps in the handoff: candidates at most 40 entries of 4 lines each, context and impact at most 60 lines each, each subagent's final message at most 15 lines. The file is the deliverable.
-- No screenshots return to the model. The screenshot agent saves PNGs to disk and Reads each final PNG once.
+- No screenshots return to the model. The screenshot agent saves PNGs to disk and Reads each final PNG once. The only extra reads are the orchestrator's one Read of each "Coming up" PNG the agent marked COMPLETE (at most `MAX_BUILDING_IMAGES`).
 - Publish verification pipes through `head -c 3000`.
 
 ## Local-only check and window
@@ -66,20 +66,34 @@ It writes `shipped.md` beside the JSON: candidate PRs, internal PRs as titles on
 
 ## Phase 2: Select and write (orchestrator)
 
-Read the three outputs. Pick `MIN_ITEMS` to `MAX_ITEMS`. Anything the collector lists as merged but not yet in production is not shipped and never appears as a launch. At most it feeds a "Coming up" line. Order: biggest user-facing launch first, then staff-benefit items, then significant fixes. Merge one feature landing across web, iOS and Android into one item. Drop anything marked embargoed. Write `draft.md` in the publisher's format (`references/notion-publishing.md`), following `references/voice.md` exactly.
+Read the three outputs. Pick `MIN_ITEMS` to `MAX_ITEMS`. Anything the collector lists as merged but not yet in production is not shipped and never appears as a launch. At most it feeds the "Coming up" section. Order: biggest user-facing launch first, then staff-benefit items, then significant fixes. Merge one feature landing across web, iOS and Android into one item. Drop anything marked embargoed. Write `draft.md` in the publisher's format (`references/notion-publishing.md`), following `references/voice.md` exactly.
 
 Page sections:
 - Headline paragraph, 2 sentences, the week's theme.
 - One block per item: plain-language title, then the image placeholder directly under the title if the item earned a screenshot, then 2 to 3 sentences on what changed and why staff should care, then a "Try it" link for web features. The image sits between title and description, never after the text.
 - "For the team", internal-benefit items, 1 to 2 sentences each.
 - "Impact from recent launches", from `impact.md`. Only `attributable` items are stated as results. `moved but not attributable` is phrased as early signal with the caveat named. `no movement` is left out unless the launch was major and staff will ask.
-- A one-line "Coming up" only if the context agent found something safe to preview.
+- "Coming up", at most 3 short bullets from the context agent's upcoming items and the collector's merged-but-not-released list, each with one clause on who it helps, only items safe to preview. Up to `MAX_BUILDING_IMAGES` bullets may carry a screenshot of the running work, directly under the bullet, when Phase 3b produces one that passes the completeness check. Put `{{IMAGE: <file>.png | In progress, not live yet}}` on its own line under the bullet only after the image exists and passed. Never name a date or promise a release.
 
-No page exceeds `MAX_IMAGES`. No PR numbers, repo names, commit language, or engineering terms in the body.
+No page exceeds `MAX_IMAGES` launch images plus `MAX_BUILDING_IMAGES` "Coming up" images. No PR numbers, repo names, commit language, or engineering terms in the body.
 
 ## Phase 3: Screenshots (one worker agent, web only)
 
 Skip if `SCREENSHOTS_ENABLED` is `no`. Decide which items earn a screenshot (at most `MAX_IMAGES` total and `MAX_IMAGES_PER_FEATURE` per feature, preferring the headline launch). Mobile app screenshots are out of scope. Hand off per `references/screenshots.md`: exact production URL, the feature element to frame (not the page), file name, output dir. A missing screenshot never blocks publishing. Remove the placeholder and continue.
+
+### Phase 3b: "Coming up" screenshots (optional, one worker agent)
+
+Skip if `BUILDING_SCREENSHOTS_ENABLED` is `no`. Run it only when it is useful: a "Coming up" bullet is a visible web feature (from the collector's merged-but-not-released list or the context agent's upcoming items), it is not embargoed, and a picture would make the bullet clearer than the sentence alone. Skip it for backend, data and invisible work, for mobile apps, and in any week where nothing qualifies. Separate cap from Phase 3: at most `MAX_BUILDING_IMAGES` images, at most 1 per feature.
+
+The agent follows the "Running unreleased work" section of `references/screenshots.md`: it starts the project locally from a throwaway git worktree of the branch the work lives on and captures the feature in place. It never touches the main checkout, never commits or pushes in a repo, and removes the worktree and stops the server when done.
+
+Completeness gate, no exceptions. An image is used only if the orchestrator can answer yes to all of these after reading the PNG once:
+- The feature is visibly working end to end in the frame, with realistic data on screen.
+- No empty state, loading skeleton, spinner, error banner, broken image, placeholder text, "coming soon", debug panel, feature-flag-off fallback or developer overlay.
+- What is on screen matches the bullet. If the bullet promises something the frame does not show, drop the image.
+- No real person's name or details.
+
+The agent reports COMPLETE or INCOMPLETE per image with one line of evidence and deletes INCOMPLETE files. The orchestrator Reads each COMPLETE file once and makes the final call. If it is not clearly complete, omit it: the bullet stands fine without a picture, and an unfinished screen in front of the company does more harm than no image. Record each candidate, its verdict and the reason in the run report.
 
 ## Phase 4: Publish (orchestrator)
 
@@ -136,4 +150,4 @@ List only launch titles. Never paste the whole page and never include PR numbers
 - `references/notion-publishing.md`: draft file format, how the publisher maps it to Notion, and `ntn` gotchas.
 - `references/voice.md`: the style guide every page follows.
 - `references/impact-method.md`: the causation bar the impact agent uses.
-- `references/screenshots.md`: the screenshot agent's method.
+- `references/screenshots.md`: the screenshot agent's method, including how to run and judge unreleased work.

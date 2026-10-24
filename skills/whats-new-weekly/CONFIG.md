@@ -15,6 +15,7 @@ Fill in the values below before the first run. The skill reads this file at the 
 | `MAX_ITEMS` | `6` | Items per page |
 | `MAX_IMAGES` | `3` | Hard cap per page |
 | `MAX_IMAGES_PER_FEATURE` | `2` | |
+| `MAX_BUILDING_IMAGES` | `2` | Separate cap for "Coming up" images of unreleased work, at most 1 per feature |
 
 ## Repos
 
@@ -145,6 +146,7 @@ Map internal names to the words your audience uses.
 | Key | Value | Notes |
 |---|---|---|
 | `SCREENSHOTS_ENABLED` | `yes` | `no` skips Phase 3 |
+| `BUILDING_SCREENSHOTS_ENABLED` | `yes` | `no` skips Phase 3b, the gated screenshots of unreleased work |
 | `BROWSER_CLI` | `<path to your headless or headed browser CLI>` | Anything that can navigate, snapshot and save a PNG to disk |
 | `DEFAULT_VIEWPORT` | `375x812` | Mobile by default. Name desktop only for a feature with no mobile view |
 | `QA_ACCOUNT_LOGIN` | `<test account login>` | A fake account for QA only. Never a real user. Keep real credentials out of this file and use your secret store |
