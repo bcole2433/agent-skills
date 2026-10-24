@@ -39,7 +39,7 @@ This task must run on my local machine. It needs the repo checkouts, the `gh` CL
 1. Work in the knowledge repo checkout at `<path to repo>` (remote: `<git remote url>`).
 2. Run `git pull --rebase origin main`.
 3. Invoke the `whats-new-weekly` skill from `.claude/skills/whats-new-weekly/SKILL.md`. Read it in full and execute it as written. Read every file under its `references/` folder that a phase points to before running that phase.
-4. The window is the rolling 7 days ending now. Publish directly to the Notion database named in the skill's `CONFIG.md`. If nothing shipped, still publish the short cadence page.
+4. The window is the rolling 7 days ending now. When it is useful, also run the skill's Phase 3b and capture gated screenshots of unreleased work for "Coming up", used only if the feature looks complete. Publish directly to the Notion database named in the skill's `CONFIG.md`. If nothing shipped, still publish the short cadence page.
 5. If the local-only check fails, log it and stop without writing or committing anything.
 6. Other pipelines may write to this repo. Keep all writes under the skill's state folder, the reports folder and the log, commit once at the end, and `git pull --rebase` before pushing, retrying once on conflict.
 ```
